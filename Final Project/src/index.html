@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Toronto Craft Breweries</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9rABaf_KBbLEY9UI2wiwiOZ8SeFoAZBE&sensor=false"></script>
+      <script src="/script.js">
+        </script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="skeleton.css">
+  </head>
+  <body>
+    <div class ="container">
+      <div class="row">
+        <div class="one column">
+        <h1>Toronto Craft Breweries</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eleven columns">
+          <!-- <form action="#" method="GET" id="searchform">
+	           <input type="text" name="query" id="query">
+            </form> -->
+            <form id="sortByArea" action="">
+              <input id="one" class="choice" type="checkbox" name="neighbourhood" value="downtown"><label class="option">Downtown</label>
+              <input id="two" class="choice" type="checkbox" name="neighbourhood" value="west"><label class="option">West Side</label>
+              <input id="three" class="choice" type="checkbox" name="neighbourhood" value="east"><label class="option">East Side</label>
+              <input  id="four" class="choice" type="checkbox" name="neighbourhood" value="midtown"><label class="option">Midtown</label>
+              <input  id="five" class="choice" type="checkbox" name="neighbourhood" value="north"><label class="option">North</label>
+            </form>
+        </div>
+        <div class="one column">
+          <!-- <input type="submit" name="submit" id="submit" value="Submit"> -->
+          <!-- <i class="fa fa-search"></i> -->
+
+        </div>
+
+      </div> <!-- for row-->
+      <div class="row">
+        <div id="craftbeer">
+
+        </div>
+        <div class="twelve columns">
+        <div id="top-map">
+
+        </div>
+    <div id="foursquare-map">
+    </div>
+        </div>
+     </div> <!-- map row-->
+  </div> <!--main container-->
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "tennant-calvin",
+  "version": "1.0.0",
+  "description": "Week 5 FINAL project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.2"
+  }
+}
