@@ -8,7 +8,7 @@ $(document).ready(function(){
   }//object literal but something else
   var map = new google.maps.Map(element, options) //executing map constructor; accessing Google Maps API properties within properties or something; new is an object literal
   //writing properties element and options
-  $.ajax({ //does not matter which order
+  $.ajax({ //d oes not matter which order
     type: 'GET',
     dataType: 'jsonp',
     cache: false,
@@ -96,38 +96,86 @@ $(document).ready(function(){
           var prefix = this.venue.photos.groups[0].items[0].prefix;
           var suffix = this.venue.photos.groups[0].items[0].suffix;
           var imgPrefix = "https://igx.4sqi.net/img/general/300x250";
-          var size = "300x200";
+
 
 
           appendeddatahtml = '<div class="craftbeer element"><h2><span>'+this.venue.name+'<img src="'+icon+'"> '+rating+'</span></h2>'+address+phone+'</p><p><strong>Total Checkins:</strong> '+this.venue.stats.checkinsCount+'</p>'+'<img src="'+ imgPrefix + this.venue.photos.groups[0].items[0].suffix +
       '"/>'+'</div>';
-          $("#craftbeer").append(appendeddatahtml);
-        })
-      }
+        $("#craftbeer").append(appendeddatahtml);
 
-    })
 
-    //sort out venues by neighbourhood
+        }) //end of each
+      } // end of success
+    }) // end of ajax
+
+    var appendeddatahtml = "";
+  	var phone = "";
+  	var rating = "";
+  	var icon = "";
+  	var address = "";
+    var photos ="";
+    var contact =""
 
 
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
       cache: false,
-      url: 'https://api.foursquare.com/v2/venues/search?client_id=UYXWDL4J1XESVFDVL4IQS4FKZJVLMCOF0SKNRRWRBBSC0LPE&client_secret=IFYVZGRK3EVI4DF1JEND5ZHC1K15NP5GAZ3NKXPOVCELZQSL&v=20180212&intent=browse&ll=43.6543,-79.3860&radius=50&query=craft-brewery&categoryId=50327c8591d4c4b30a586d5d',
+      url: 'https://api.foursquare.com/v2/venues/search?client_id=UYXWDL4J1XESVFDVL4IQS4FKZJVLMCOF0SKNRRWRBBSC0LPE&client_secret=IFYVZGRK3EVI4DF1JEND5ZHC1K15NP5GAZ3NKXPOVCELZQSL&v=20180212&intent=checkin&near=Toronto&query=craft-brewery&categoryId=50327c8591d4c4b30a586d5d',
 
       success: function(response){
         console.log(response);
+        $("#distance").show();
+        $("#distance").html("");
+        var distanceResult = response.response.venues;
 
-    var downtown = "43.6543,79.3860";
-    var westSide = "43.6591,79.4396";
-    var eastSide = "43.6912,79.3417";
-    var midtown = "43.6985,79.4029";
-    var north ="43.7615,79.4111";
 
-    var checkBox = $("#sortByArea");
+        // append data for each venue
+        				$.each( distanceResult, function() {
 
-                } //response end
-          }) //end of ajax
+        					if (this.contact.formattedPhone) {
+        						phone = "Phone:"+this.contact.formattedPhone;
+        					} else {
+        						phone = "";
+        					}
+
+        					if (this.location.address) {
+        						address = '<p class="subinfo">'+this.location.address+'<br>';
+        					} else {
+        						address = "";
+        					}
+
+        					if (this.rating) {
+        						rating = '<span class="rating">'+this.rating+'</span>';
+        					}
+
+
+                  var clientId = "UYXWDL4J1XESVFDVL4IQS4FKZJVLMCOF0SKNRRWRBBSC0LPE";
+                  var clientSecret= "IFYVZGRK3EVI4DF1JEND5ZHC1K15NP5GAZ3NKXPOVCELZQSL";
+                  var url = "https://api.foursquare.com/v2/venues/explore?near=";
+                  // var prefix = this.photos.groups[0].items[0].prefix;
+                  // var suffix = this.photos.groups[0].items[0].suffix;
+                  // var imgPrefix = "https://igx.4sqi.net/img/general/300x250";
+
+
+
+                  appendeddatahtml = '<div class="distance element"><h2><span>'+this.name+'<img src="'+icon+'"> '+rating+'</span></h2>'+address+phone+'</p><p><strong>Total Checkins:</strong> '+this.stats.checkinsCount+'</p>'+'</div>';
+                // $("#distance").append(appendeddatahtml);
+
+              }) //end of each
+              } // end of success
+              }) // end of ajax
+
+
+      $("#one").click(function() {
+        if ($(this).is(':checked')) {
+          // alert("works");
+          $("#distance").append(appendeddatahtml);
+          $("#craftbeer").hide();
+          $("#distance").show();
+          // $("#distance").html("");
+        }
+        });
+
 
 });
